@@ -29,6 +29,11 @@
 .jp-audio,
 .jp-audio-stream,
 .jp-video {
+  /* 影をつける */
+  -webkit-box-shadow:0px 0px 20px rgba(0,0,0,.3);
+  -moz-box-shadow:0px 0px 20px rgba(0,0,0,.3);
+  box-shadow:0px 0px 20px rgba(0,0,0,.3);
+
   font-size: 16px;
   font-family: Verdana, Arial, sans-serif;
   line-height: 1.6;
@@ -43,6 +48,7 @@
   width: 182px; }
 
 .jp-video-270p {
+  /*margin: 0px auto;*/
   width: 480px; }
 
 .jp-video-360p {
@@ -337,6 +343,10 @@
 
 .jp-details,
 .jp-playlist {
+  height: 300px; /* リストの数に関係なくプレーヤーの高さを固定する */
+  overflow-y: auto; /* プレーヤーの高さを越えるリスト数があった場合に縦スクロールバーを出現 */
+  overflow-x: hidden; /* 横スクロールバーは出現させない */
+
   width: 100%;
   background-color: #ccc;
   border-top: 1px solid #009be3; }

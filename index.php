@@ -1,15 +1,33 @@
 <?php
-$list = file_get_contents("plist.txt");
+$list = file_get_contents("db/plist.txt");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 <title>Cloud Media Player</title>
-<link href="./dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+<style>
+html {
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+	display: table;
+}
+
+body {
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 0;
+	display: table-cell;
+	vertical-align: middle;
+
+	background: #222222;
+}
+</style>
+<link href="./lib/skin/css/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="./lib/jquery.min.js"></script>
-<script type="text/javascript" src="./dist/jplayer/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="./dist/add-on/jplayer.playlist.min.js"></script>
+<script type="text/javascript" src="./lib/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="./lib/jplayer.playlist.min.js"></script>
 
 <script type="text/javascript" src="./lib/aurora/aurora.js"></script>
 <!--<script type="text/javascript" src="./lib/aurora/aac.js"></script>-->
@@ -34,14 +52,9 @@ $(document).ready(function(){
 			webmv: "http://www.jplayer.org/video/webm/Incredibles_Teaser.webm",
 			poster: "http://www.jplayer.org/video/poster/Incredibles_Teaser_640x272.png"
 		},
-		{
-			title:"桜霞──春",
-			free: true,
-			mp3:"http://dekasu.net/jplayer/sample/sakura-gasumi.mp3"
-		},
 <?=$list?>
 	], {
-		swfPath: "./dist/jplayer",
+		swfPath: "./lib",
 		supplied: "mp3, m4a, flac, oga, wav, webmv, ogv, m4v, aac, mp4, flv",
 		useStateClassSkin: true,
 		autoBlur: false,
@@ -107,7 +120,6 @@ $(document).ready(function(){
 		</div>
 		<div class="jp-playlist">
 			<ul>
-				<!-- The method Playlist.displayPlaylist() uses this unordered list -->
 				<li>&nbsp;</li>
 			</ul>
 		</div>
@@ -117,5 +129,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+<a href="plist.php">プレイリスト更新</a>
 </body>
 </html>

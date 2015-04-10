@@ -3,6 +3,10 @@
 This folder holds copies of external libraries.
 The purpose of having static copies of external libraries is so that the examples work after simply cloning or downloading the repository.
 
+## jPlayer Solution
+
+- [jPlayer](https://github.com/happyworm/jPlayer)
+
 ## Aurora Solution
 
 To enable the [Aurora](https://github.com/audiocogs) solution inside jPlayer, the following files were added to the library.

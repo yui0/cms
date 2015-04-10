@@ -2,7 +2,7 @@
 $db_host		= '';
 $db_user		= '';
 $db_pass		= '';
-$db_database	= '/var/www/ssl/mplayer/plist.db';
+$db_database	= 'db/plist.db';
 
 $db = new PDO("sqlite:".$db_database) or die('Unable to establish a DB connection');
 
@@ -22,7 +22,7 @@ function encodeURI($url) {
 		'%40'=>'@','%26'=>'&','%3D'=>'=','%2B'=>'+','%24'=>'$'
 	);
 	$score = array(
-		'%23'=>'#'
+		'%23'=>'#'	//????
 	);
 	return strtr(rawurlencode($url), array_merge($reserved,$unescaped,$score));
 }
@@ -83,10 +83,12 @@ foreach ($array as $name) {
 	case "jpg":
 		$p = "poster:\""./*$url.*/encodeURI($name)."\"\n";
 		$pp = encodeURI($name);
+	case "zip":
 	case "m3u":
 	case "cue":
 	case "txt":
 	case "ini":
+	case "rtf":
 	case "md5":
 	case "sfv":
 	case "log":
@@ -101,7 +103,7 @@ foreach ($array as $name) {
 	}
 }
 
-file_put_contents("plist.txt", $list);
+file_put_contents("db/plist.txt", $list);
 echo "OK!";
 ?>
 
