@@ -3,10 +3,19 @@ $db_host		= '';
 $db_user		= '';
 $db_pass		= '';
 $db_database	= 'db/plist.db';
+$db_txt	= 'db/plist.txt';
+
+if (!empty($_GET["list"])) {
+	$db_txt = 'db/'.htmlspecialchars($_GET["list"]);
+}
 
 $db = new PDO("sqlite:".$db_database) or die('Unable to establish a DB connection');
 
 $path = "data";
+
+if (!empty($_GET["path"])) {
+	$path = htmlspecialchars($_GET["path"]);
+}
 
 $url = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"]. $_SERVER["REQUEST_URI"];
 
@@ -21,10 +30,10 @@ function encodeURI($url) {
 		'%3B'=>';','%2C'=>',','%2F'=>'/','%3F'=>'?','%3A'=>':',
 		'%40'=>'@','%26'=>'&','%3D'=>'=','%2B'=>'+','%24'=>'$'
 	);
-	$score = array(
-		'%23'=>'#'	//????
-	);
-	return strtr(rawurlencode($url), array_merge($reserved,$unescaped,$score));
+	/*$score = array(
+		'%23'=>'#'	// no need for chrome
+	);*/
+	return strtr(rawurlencode($url), array_merge($reserved,$unescaped/*,$score*/));
 }
 
 function getFileList($dir) {
@@ -55,10 +64,16 @@ foreach ($array as $name) {
 	case "mpeg":
 		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
+	case "mpg":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
 	case "mp3":
 		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "mp4":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "mkv":
 		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "wma":
@@ -77,6 +92,9 @@ foreach ($array as $name) {
 		$s = "flv:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "avi":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "ogm":
 		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 
@@ -103,7 +121,7 @@ foreach ($array as $name) {
 	}
 }
 
-file_put_contents("db/plist.txt", $list);
+file_put_contents($db_txt, $list);
 echo "OK!";
 ?>
 

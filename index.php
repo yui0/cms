@@ -1,5 +1,9 @@
 <?php
-$list = file_get_contents("db/plist.txt");
+if (empty($_GET["list"])) {
+	$list = file_get_contents("db/plist.txt");
+} else {
+	$list = file_get_contents("db/".htmlspecialchars($_GET["list"]));
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,8 +30,11 @@ body {
 </style>
 <link href="./lib/skin/css/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="./lib/jquery.min.js"></script>
-<script type="text/javascript" src="./lib/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="./lib/jplayer.playlist.min.js"></script>
+<!--<script type="text/javascript" src="./lib/zepto.min.js"></script>-->
+<!--<script type="text/javascript" src="./lib/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="./lib/jplayer.playlist.min.js"></script>-->
+<script type="text/javascript" src="./lib/jquery.jplayer.js"></script>
+<script type="text/javascript" src="./lib/jplayer.playlist.js"></script>
 
 <script type="text/javascript" src="./lib/aurora/aurora.js"></script>
 <!--<script type="text/javascript" src="./lib/aurora/aac.js"></script>-->
@@ -40,7 +47,7 @@ body {
 //<![CDATA[
 $(document).ready(function(){
 
-	new jPlayerPlaylist({
+	var pl = new jPlayerPlaylist({
 		jPlayer: "#jquery_jplayer_1",
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
@@ -55,7 +62,7 @@ $(document).ready(function(){
 <?=$list?>
 	], {
 		swfPath: "./lib",
-		supplied: "mp3, m4a, flac, oga, wav, webmv, ogv, m4v, aac, mp4, flv",
+		supplied: "mp3,m4a,flac,oga,wav,webmv,ogv,m4v,aac,mp4,flv",
 		useStateClassSkin: true,
 		autoBlur: false,
 		smoothPlayBar: true,
@@ -65,13 +72,92 @@ $(document).ready(function(){
 		preload: 'auto',
 		volume: 1,
 
-//		solution: "html,flash,aurora",
-		solution: "aurora,html,flash",
+		solution: "html,flash,aurora",
 		auroraFormats: "mp3,flac,oga,wav",
 
 //		warningAlerts: true,
 		errorAlerts: true,
+
+		keyBindings: {
+				/*previous: {
+					key: 52, // ←
+					fn: function() {
+						self.previous();
+					}
+				},
+				next: {
+					key: 54, // →
+					fn: function() {
+						self.next();
+					}
+				},
+				shuffle: {
+					key: 83, // s
+					fn: function() {
+						self.shuffle();
+					}
+				},*/
+				/*play: {
+					key: 32, // space
+					fn: function(f) {
+						if(f.status.paused) {
+							f.play();
+						} else {
+							f.pause();
+						}
+					}
+				},*/
+				play: {
+					key: 80, // p
+					fn: function(f) {
+						if(f.status.paused) {
+							f.play();
+						} else {
+							f.pause();
+						}
+					}
+				},
+				fullScreen: {
+					key: 70, // f
+					fn: function(f) {
+						if(f.status.video || f.options.audioFullScreen) {
+							f._setOption("fullScreen", !f.options.fullScreen);
+						}
+					}
+				},
+				muted: {
+					key: 77, // m
+					fn: function(f) {
+						f._muted(!f.options.muted);
+					}
+				},
+				volumeUp: {
+					key: 190, // .
+					fn: function(f) {
+						f.volume(f.options.volume + 0.1);
+					}
+				},
+				volumeDown: {
+					key: 188, // ,
+					fn: function(f) {
+						f.volume(f.options.volume - 0.1);
+					}
+				},
+				loop: {
+					key: 76, // l
+					fn: function(f) {
+						f._loop(!f.options.loop);
+					}
+				}
+		}
 	});
+
+	// for quit
+	$(window).on("beforeunload", function(e) {
+		localStorage.setItem("select", pl.current);
+	});
+	// for startup
+	pl.select(localStorage.select);
 });
 //]]>
 </script>
