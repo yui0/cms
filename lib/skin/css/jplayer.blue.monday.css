@@ -362,6 +362,7 @@
   font-weight: bold; }
 
 .jp-playlist ul {
+//  position: relative; /* for position() */
   list-style-type: none;
   margin: 0;
   padding: 0 20px;

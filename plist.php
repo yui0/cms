@@ -61,6 +61,9 @@ foreach ($array as $name) {
 
 	$flag = 1;
 	switch ($ext) {
+	case "wav":
+		$s = "wav:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
 	case "mpeg":
 		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
@@ -76,7 +79,7 @@ foreach ($array as $name) {
 	case "mkv":
 		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
-	case "wma":
+	case "wma":	// x!
 		$s = "m4a:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "wmv":
@@ -99,9 +102,11 @@ foreach ($array as $name) {
 		break;
 
 	case "jpg":
+	case "png":
 		$p = "poster:\""./*$url.*/encodeURI($name)."\"\n";
 		$pp = encodeURI($name);
 	case "zip":
+	case "rar":
 	case "m3u":
 	case "cue":
 	case "txt":
