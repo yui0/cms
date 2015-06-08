@@ -23,12 +23,12 @@ function encodeURI($url) {
 	// http://php.net/manual/en/function.rawurlencode.php
 	// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
 	$unescaped = array(
-		'%2D'=>'-','%5F'=>'_','%2E'=>'.','%21'=>'!', '%7E'=>'~',
+		'%2D'=>'-', '%5F'=>'_', '%2E'=>'.', /*'%21'=>'!',*/ '%7E'=>'~',
 		'%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')'
 	);
 	$reserved = array(
-		'%3B'=>';','%2C'=>',','%2F'=>'/','%3F'=>'?','%3A'=>':',
-		'%40'=>'@','%26'=>'&','%3D'=>'=','%2B'=>'+','%24'=>'$'
+		'%3B'=>';', '%2C'=>',', '%2F'=>'/', '%3F'=>'?', '%3A'=>':',
+		'%40'=>'@', '%26'=>'&', '%3D'=>'=', '%2B'=>'+', '%24'=>'$'
 	);
 	/*$score = array(
 		'%23'=>'#'	// no need for chrome
@@ -61,29 +61,8 @@ foreach ($array as $name) {
 
 	$flag = 1;
 	switch ($ext) {
-	case "wav":
-		$s = "wav:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "mpeg":
-		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "mpg":
-		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
 	case "mp3":
 		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "mp4":
-		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "mkv":
-		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "wma":	// x!
-		$s = "m4a:\""./*$url.*/encodeURI($name)."\",\n";
-		break;
-	case "wmv":
-		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "m4a":
 		$s = "m4a:\""./*$url.*/encodeURI($name)."\",\n";
@@ -91,14 +70,51 @@ foreach ($array as $name) {
 	case "flac":
 		$s = "flac:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
+	case "oga":
+		$s = "oga:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "aac":
+		$s = "aac:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "wav":
+		$s = "wav:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "mpeg":
+		$s = "mp3:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "wma":	// x!
+		$s = "m4a:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+
 	case "flv":
 		$s = "flv:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "mp4":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "m4v":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "mpg":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "mkv":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "wmv":
+		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "avi":
 		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 	case "ogm":
 		$s = "m4v:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "ogv":
+		$s = "ogv:\""./*$url.*/encodeURI($name)."\",\n";
+		break;
+	case "webmv":
+		$s = "webmv:\""./*$url.*/encodeURI($name)."\",\n";
 		break;
 
 	case "jpg":
@@ -115,6 +131,8 @@ foreach ($array as $name) {
 	case "md5":
 	case "sfv":
 	case "log":
+
+//	case "tta":
 		$flag = 0;
 	}
 

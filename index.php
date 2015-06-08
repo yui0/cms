@@ -62,7 +62,7 @@ $(document).ready(function(){
 <?=$list?>
 	], {
 		swfPath: "./lib",
-		supplied: "mp3,m4a,flac,oga,wav,webmv,ogv,m4v,aac,mp4,flv",
+		supplied: "mp3,m4a,flac,oga,aac,wav,flv,m4v,ogv,webmv",
 		useStateClassSkin: true,
 		autoBlur: false,
 		smoothPlayBar: true,
@@ -157,7 +157,8 @@ $(document).ready(function(){
 		localStorage.setItem("select", pl.current);
 	});
 	// for startup
-	pl.select(localStorage.select);
+	//pl.select(localStorage.select);
+	pl.current = localStorage.select;
 });
 //]]>
 </script>
