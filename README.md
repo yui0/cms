@@ -6,7 +6,7 @@ a HTML media player.
 
 ## Demo
 
-https://cms.herokuapp.com/
+https://cmedia.herokuapp.com/
 
 ## Technologies
 
