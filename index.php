@@ -51,14 +51,6 @@ $(document).ready(function(){
 		jPlayer: "#jquery_jplayer_1",
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
-		{
-			title:"Incredibles Teaser",
-			artist:"Pixar",
-			m4v: "http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v",
-			ogv: "http://www.jplayer.org/video/ogv/Incredibles_Teaser.ogv",
-			webmv: "http://www.jplayer.org/video/webm/Incredibles_Teaser.webm",
-			poster: "http://www.jplayer.org/video/poster/Incredibles_Teaser_640x272.png"
-		},
 <?=$list?>
 	], {
 		swfPath: "./lib",
