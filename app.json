@@ -1,0 +1,8 @@
+{
+	"name": "Cloud Media Server",
+	"description": "a HTML media player",
+	"repository": "https://github.com/yui0/cms",
+	"logo": "https://raw.githubusercontent.com/yui0/jGallery/master/img/050618-blue-tiedyed-cloth-icon-natural-wonders-flower17.png",
+	"env": {
+	}
+}
